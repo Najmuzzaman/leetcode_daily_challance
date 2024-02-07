@@ -1,16 +1,15 @@
 public class Solution {
     public string FrequencySort(string s) {
-       int[] mp = new int[128];
-        List<char> ch=new List<char>();
+        int[] mp = new int[128];
+
         // Calculate frequencies of characters
-        foreach (char c in s)
-        {
-            if (mp[c] == 0) ch.Add(c);
+        foreach (char c in s) {
             mp[c]++;
         }
 
         // Create an array of characters from ASCII values
-        char[] chars = ch.ToArray();
+        char[] chars = Enumerable.Range(0, 128).Select(i => (char)i).ToArray();
+
         // Sort characters by frequency in descending order
         Array.Sort(chars, (a, b) => mp[b] - mp[a]);
 
@@ -18,10 +17,8 @@ public class Solution {
         StringBuilder result = new StringBuilder();
 
         // Construct the result string
-        foreach (char c in chars)
-        {
-            if (mp[c] > 0)
-            {
+        foreach (char c in chars) {
+            if (mp[c] > 0) {
                 result.Append(c, mp[c]);
             }
         }
