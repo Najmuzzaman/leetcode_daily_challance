@@ -12,16 +12,15 @@ public class Solution {
                 mp[c] = 1;
             }
         }
-        var sortedList = mp.ToList();
-        sortedList.Sort((x, y) => y.Value.CompareTo(x.Value));        
-        string a = "";
-        foreach(var kvp in sortedList)
-        {
-            for(int i=0;i<kvp.Value;i++)
-            {
-                a+= kvp.Key;
-            }
+        // Create a StringBuilder to efficiently build the result string
+        StringBuilder result = new StringBuilder();
+
+        // Iterate over the dictionary in descending order of frequency
+        foreach (var kvp in mp.OrderByDescending(x => x.Value)) {
+            // Append the character kvp.Key to the result string kvp.Value times
+            result.Append(kvp.Key, kvp.Value);
         }
-        return a;
+
+        return result.ToString();
     }
 }
