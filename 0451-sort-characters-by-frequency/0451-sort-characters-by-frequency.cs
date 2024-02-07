@@ -1,24 +1,35 @@
 public class Solution {
     public string FrequencySort(string s) {
-        Dictionary<char,int> mp = new Dictionary<char,int>();
-        foreach (char c in s)
-        {
-            if(mp.ContainsKey(c))
-            {
-                mp[c]++;
-            }
-            else
-            {
-                mp[c] = 1;
-            }
-        }
-        // Create a StringBuilder to efficiently build the result string
-        StringBuilder result = new StringBuilder();
+        // Create a dictionary to store character frequencies
+        Dictionary<char, int> frequencyMap = new Dictionary<char, int>();
 
-        // Iterate over the dictionary in descending order of frequency
-        foreach (var kvp in mp.OrderByDescending(x => x.Value)) {
-            // Append the character kvp.Key to the result string kvp.Value times
-            result.Append(kvp.Key, kvp.Value);
+        // Calculate frequencies of characters
+        foreach (char c in s) {
+            frequencyMap[c] = frequencyMap.GetValueOrDefault(c, 0) + 1;
+        }
+
+        // Find the maximum frequency to determine the size of the bucket array
+        int maxFrequency = frequencyMap.Values.Max();
+
+        // Create an array of StringBuilder for buckets, indexed by frequency
+        StringBuilder[] buckets = new StringBuilder[maxFrequency + 1];
+
+        // Initialize each bucket
+        for (int i = 0; i <= maxFrequency; i++) {
+            buckets[i] = new StringBuilder();
+        }
+
+        // Populate buckets with characters
+        foreach (var kvp in frequencyMap) {
+            char c = kvp.Key;
+            int frequency = kvp.Value;
+            buckets[frequency].Append(c, frequency);
+        }
+
+        // Construct the result string by concatenating characters from buckets in reverse order
+        StringBuilder result = new StringBuilder();
+        for (int i = maxFrequency; i >= 0; i--) {
+            result.Append(buckets[i]);
         }
 
         return result.ToString();
