@@ -10,10 +10,8 @@ public class Solution {
                  d[arr[i]]=1;
          }
          int ans = d.Count;
-         List<KeyValuePair<int, int>> sortedList = d.ToList();
-         // Sort the list by value in ascending order
-         sortedList.Sort((x, y) => x.Value.CompareTo(y.Value));
-         foreach (var l in sortedList)
+         var sortedDict = d.OrderBy(x => x.Value);
+         foreach (var l in sortedDict)
          {
              n = l.Value;
              if (k >= n)
