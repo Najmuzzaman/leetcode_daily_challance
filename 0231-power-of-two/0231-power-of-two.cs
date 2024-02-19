@@ -3,7 +3,7 @@ public class Solution {
         if (n==1) return true;
         if (n%2==1) return false;
         if(n<1) return false;
-        return IsPowerOfTwo(n/2);
-        return true;
+        int count = BitOperations.PopCount((uint)n);
+        return count==1;
     }
 }
