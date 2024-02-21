@@ -1,14 +1,15 @@
 public class Solution {
     public int RangeBitwiseAnd(int left, int right) {
-        int result = 0;
-        // Find the common bits from MSB
-        while (left > 0 && left != right) {
+        int shift = 0;
+
+        // Find the common prefix (MSB) of left and right
+        while (left < right) {
             left >>= 1;
             right >>= 1;
-            result++;
+            shift++;
         }
 
-        // Shift back to get the final result
-        return left << result;
+        // Shift left by the common prefix to get the final result
+        return left << shift;
     }
 }
