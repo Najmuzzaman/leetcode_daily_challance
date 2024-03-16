@@ -6,7 +6,7 @@ public class Solution {
         int count = 0;
         for (int i = 0; i < n; i++)
         {
-            count += (nums[i] == 1) ? 1 : -1;            
+            count += (nums[i] == 0) ? 1 : -1;            
             if (SumMap.ContainsKey(count))
                 ans = Math.Max(ans, i - SumMap[count]);
             else
