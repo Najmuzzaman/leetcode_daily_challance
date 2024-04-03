@@ -1,11 +1,11 @@
 public class Solution {
-    private char[][] board;
-    
+    char[][] board;
+    int len,m,n; 
     public bool Exist(char[][] board, string word) {
         this.board = board;
-        int m = board.Length;
-        int n = board[0].Length;
-
+        m = board.Length;
+        n = board[0].Length;
+        len=word.Length;
         bool[,] visited = new bool[m, n];
         bool ans = false;
         
@@ -22,7 +22,7 @@ public class Solution {
     }
     
     private bool dfs(string word, bool[,] visited, int i, int j, int v) {
-        if (v == word.Length) {
+        if (v == len) {
             return true;
         }
         
@@ -43,10 +43,7 @@ public class Solution {
         return false;
     }
     
-    private bool IsValid(int i, int j, bool[,] visited, char target) {
-        int m = board.Length;
-        int n = board[0].Length;
-        
+    private bool IsValid(int i, int j, bool[,] visited, char target) {               
         return i >= 0 && i < m && j >= 0 && j < n && !visited[i, j] && board[i][j] == target;
     }
 }
