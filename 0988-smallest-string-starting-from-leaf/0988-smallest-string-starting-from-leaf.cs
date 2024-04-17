@@ -24,29 +24,19 @@ public class Solution {
         if (root.left == null && root.right == null) {
             return ReverseStringBuilder(sb);
         }
-        StringBuilder sb1=new StringBuilder();
-        StringBuilder sb2=new StringBuilder();
-        if( root.left != null)
-            sb1 = dfs(root.left,new StringBuilder(sb.ToString()));
-        if( root.right != null)
-            sb2 =  dfs(root.right,new StringBuilder(sb.ToString()));
         
-        if (sb1.Length != 0 && sb2.Length != 0) {
+        StringBuilder sb1 =root.left != null ? dfs(root.left,new StringBuilder(sb.ToString())) : new StringBuilder();
+        StringBuilder sb2 =  root.right != null ? dfs(root.right,new StringBuilder(sb.ToString())) : new StringBuilder();
+        
+        if (sb1.Length != 0 && sb2.Length != 0)
             return sb1.ToString().CompareTo(sb2.ToString()) < 0 ? sb1 : sb2;
-        } 
         else 
-        {
             return sb1.Length != 0  ? sb1 : sb2;
-        }
     }
     
-    private StringBuilder ReverseStringBuilder(StringBuilder s) {
-        int n = s.Length;
-        for (int i = 0; i < n / 2; i++) {
-            char temp = s[i];
-            s[i] = s[n - 1 - i];
-            s[n - 1 - i] = temp;
-        }
-        return s;
+    private StringBuilder ReverseStringBuilder(StringBuilder sb) {
+        char[] arr = sb.ToString().ToCharArray();
+        Array.Reverse(arr);
+        return new StringBuilder(new string(arr));
     }
 }
