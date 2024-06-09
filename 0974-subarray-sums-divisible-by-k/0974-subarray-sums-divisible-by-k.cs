@@ -5,19 +5,15 @@ public class Solution {
         int cnt = 0;
         Dictionary<int,int> p= new Dictionary<int,int>();
         p[0]=1;
+        for(int i=1;i<k;i++)
+            p[i]=0;
         for (int i = 0; i < n; i++)
         {
             sum += nums[i];
-            int mod = sum % k;
-            if (mod < 0)
-                mod += k;
-            if (p.ContainsKey(mod))
-            {
-                cnt += p[mod];
-                p[mod]++;
-            }
-            else
-                p[mod]=1;
+            int mod = (sum%k+k) % k;            
+            cnt += p[mod];
+            p[mod]++;
+            
         }
         return cnt;
     }
