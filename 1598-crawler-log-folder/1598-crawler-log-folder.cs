@@ -1,16 +1,16 @@
 public class Solution {
     public int MinOperations(string[] logs) {
-        Stack<int> st=new Stack<int>();
+        int st=0;
         foreach(string log in logs)
         {
             if(log == "../")
             {
-                if(st.Count() == 0) continue;
-                st.Pop();
+                if(st == 0) continue;
+                st--;
             }
             else if(log == "./") continue;
-            else st.Push(1);            
+            else st++;            
         }
-        return st.Count();
+        return st;
     }
 }
