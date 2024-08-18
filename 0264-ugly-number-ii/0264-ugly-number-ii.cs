@@ -1,45 +1,32 @@
 public class Solution {
     
-    static long[] Precal(int n)
-    {
-        long[] number = new long[10000];
-        number[1] = 1;
-        bool flag = true;
-        long currentvalue = 1;
-        for (int ii = 2; ii <= n; ii++)
-        {
-            long m = int.MaxValue;
-            for (int i = 1; i < ii; i++)
-            {
-                long po = 0;
-                long a = number[i] * 2;
-                if (a > currentvalue)
-                    po = a;
-                if (po == 0)
-                {
-                    long b = number[i] * 3;
-                    if (b > currentvalue)
-                        po = b;
-                }
-                if (po == 0)
-                {
-                    long c = number[i] * 5;
-                    if (c > currentvalue)
-                        po = c;
-                }
-                if (po != 0)
-                {
-                    m =Math.Min(po,m);
-                }
-            }
-            number[ii] = m;
-            currentvalue = m;
-        }
-        return number;
-    }    
+   
     public int NthUglyNumber(int n) 
     {
-        long[] ans=Precal(n);
-        return (int)ans[n];
+        HashSet<long> seen = new HashSet<long>();  // To keep track of generated ugly numbers
+        PriorityQueue<long, long> heap = new PriorityQueue<long, long>();  // Min-heap to fetch the smallest ugly number
+
+        long[] factors = new long[] { 2, 3, 5 };
+        heap.Enqueue(1, 1);  // Start with the smallest ugly number
+        seen.Add(1);
+        
+        long currentUgly = 1;
+
+        for (int i = 1; i <= n; i++) 
+        {
+            currentUgly = heap.Dequeue();  // Get the smallest ugly number
+
+            foreach (long factor in factors) 
+            {
+                long newUgly = currentUgly * factor;
+                if (!seen.Contains(newUgly)) 
+                {
+                    seen.Add(newUgly);
+                    heap.Enqueue(newUgly, newUgly);  // Add the new ugly number to the heap
+                }
+            }
+        }
+
+        return (int)currentUgly;
     }
 }
