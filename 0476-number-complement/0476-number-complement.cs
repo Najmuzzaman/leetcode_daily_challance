@@ -1,13 +1,7 @@
 public class Solution {
     public int FindComplement(int num) {
-        int a=num;
-        int ans=1;
-        while(a!=1)
-        {
-            ans*=2;
-            ans++;
-            a/=2;
-        }
-        return ans-num;
+        int highestBit = 1 << (int)(Math.Log(num,2));
+        int mask = (highestBit * 2) - 1;
+        return num ^ mask;
     }
 }
