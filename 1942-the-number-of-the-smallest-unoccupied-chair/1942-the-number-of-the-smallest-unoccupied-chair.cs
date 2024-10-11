@@ -48,7 +48,6 @@ public class Solution {
                 {
                     int VacentChair = chair[friend];
                     freeChairs.Add(VacentChair);
-                    chair.Remove(friend);
                 }
             }
         }
