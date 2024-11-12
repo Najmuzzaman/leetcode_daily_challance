@@ -33,7 +33,7 @@ public class Solution {
                 index = ~index;
                 index--;
             }
-            if(index>=l || index==-1)
+            if(index==-1)
                 result[i]= 0;
             else
                 result[i]= sortedList[index].Value;
