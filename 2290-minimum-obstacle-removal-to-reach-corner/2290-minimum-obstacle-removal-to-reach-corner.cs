@@ -36,16 +36,8 @@ public class Solution {
                 {
                     if( MinObstacles[nx, ny]==-1)
                     {
-                        if (grid[nx][ny] == 1)
-                        {
-                            MinObstacles[nx,ny] = obstacles + 1;
-                            pq.Add((obstacles + 1, nx, ny));
-                        }
-                        else
-                        {
-                            MinObstacles[nx, ny] = obstacles;
-                            pq.Add((obstacles, nx, ny));
-                        }
+                        MinObstacles[nx,ny] = obstacles + grid[nx][ny];
+                        pq.Add((obstacles + grid[nx][ny], nx, ny));                       
                     }
                 }
             }
