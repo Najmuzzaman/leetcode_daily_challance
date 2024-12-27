@@ -5,8 +5,10 @@ public class Solution {
         int first=values[0];
         for(int i=1;i<n;i++)
         {
-            ans=Math.Max(ans,first+values[i]-i);
-            first=Math.Max(first,values[i]+i);            
+            if(ans<(first+values[i]-i))
+                ans=first+values[i]-i;
+            if(first<(values[i]+i))
+                first=values[i]+i;            
         }
         return ans;
     }
