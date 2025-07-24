@@ -1,42 +1,33 @@
 public class Solution {
-    public int MaximumGain(string s, int x, int y) {
-        int res = 0;
-        string top, bot;
-        int top_score, bot_score;
-        if (y > x) 
+    public int MaximumGain(string s, int x, int y) 
+    {
+        Stack<char> st = new Stack<char>();
+        char first = 'a', second = 'b';
+        int ans = 0, sp = Math.Max(x,y);
+        if(y > x) (first,second) = (second,first);
+        for(int i = 0; i < s.Length;i++)
         {
-            top = "ba";
-            top_score = y;
-            bot = "ab";
-            bot_score = x;
-        } 
-        else 
-        {
-            top = "ab";
-            top_score = x;
-            bot = "ba";
-            bot_score = y;
-        }
-        var stack = new List<char>();
-        foreach (char ch in s) {
-            if (ch == top[1] && stack.Count > 0 && stack[stack.Count - 1] == top[0])
+            if(st.Count > 0 && st.Peek() == first && s[i] == second)
             {
-                res += top_score;
-                stack.RemoveAt(stack.Count - 1);
-            } 
-            else
-                stack.Add(ch);
-        }
-        // Removing bot substrings cause they give less or equal amount of scores
-        var newStack = new List<char>();
-        foreach (char ch in stack) {
-            if (ch == bot[1] && newStack.Count > 0 && newStack[newStack.Count - 1] == bot[0]) {
-                res += bot_score;
-                newStack.RemoveAt(newStack.Count - 1);
+                st.Pop();
+                ans+= sp;
             }
             else
-                newStack.Add(ch);
+                st.Push(s[i]);
         }
-        return res;
+        sp = Math.Min(x,y);
+        Stack<char> st2 = new Stack<char>();
+        while(st.Count > 0)
+        {
+            char top = st.Pop();
+            if(st2.Count > 0 && top == second && st2.Peek() == first)
+            {
+                st2.Pop();
+                ans+= sp;
+            }
+            else 
+                st2.Push(top);
+        }
+        return ans;
     }
 }
