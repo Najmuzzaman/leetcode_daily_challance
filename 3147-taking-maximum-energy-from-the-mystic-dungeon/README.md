@@ -1,10 +1,12 @@
-<h2><a href="https://leetcode.com/problems/taking-maximum-energy-from-the-mystic-dungeon/">3147. Taking Maximum Energy From the Mystic Dungeon</a></h2><h3>Medium</h3><hr><div><p>In a mystic dungeon, <code>n</code> magicians are standing in a line. Each magician has an attribute that gives you energy. Some magicians can give you negative energy, which means taking energy from you.</p>
+<h2><a href="https://leetcode.com/problems/taking-maximum-energy-from-the-mystic-dungeon/?envType=daily-question&envId=2025-10-10">3147. Taking Maximum Energy From the Mystic Dungeon</a></h2><h3>Medium</h3><hr><p>In a mystic dungeon, <code>n</code> magicians are standing in a line. Each magician has an attribute that gives you energy. Some magicians can give you negative energy, which means taking energy from you.</p>
 
 <p>You have been cursed in such a way that after absorbing energy from magician <code>i</code>, you will be instantly transported to magician <code>(i + k)</code>. This process will be repeated until you reach the magician where <code>(i + k)</code> does not exist.</p>
 
-<p>In other words, you will choose a starting point and then teleport with <code>k</code> jumps until you reach the end of the magicians' sequence, <strong>absorbing all the energy</strong> during the journey.</p>
+<p>In other words, you will choose a starting point and then teleport with <code>k</code> jumps until you reach the end of the magicians&#39; sequence, <strong>absorbing all the energy</strong> during the journey.</p>
 
 <p>You are given an array <code>energy</code> and an integer <code>k</code>. Return the <strong>maximum</strong> possible energy you can gain.</p>
+
+<p><strong>Note</strong> that when you are reach a magician, you <em>must</em> take energy from them, whether it is negative or positive energy.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
@@ -67,4 +69,4 @@
 </ul>
 
 <p>&nbsp;</p>
-​​​​​​</div>
+​​​​​​
